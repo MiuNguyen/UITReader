@@ -1,0 +1,229 @@
+﻿
+<Page x:ConnectionId='1' x:Class="UITReader.Views.FeedView"
+    NavigationCacheMode="Required"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UITReader.Views"
+    xmlns:common="using:UITReader.Common"
+    xmlns:controls="using:UITReader.Controls"
+    xmlns:viewmodels="using:UITReader.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <DataTemplate x:Key="ArticlesListViewArticleTemplate"
+                                                              >
+            <Grid x:ConnectionId='2'>
+                <Grid>
+                    <StackPanel Background="{ThemeResource Background60WhiteBrush}">
+                        <Grid Padding="12,12,12,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock x:ConnectionId='4' Grid.Row="0"
+                                                                             
+                                       TextWrapping="NoWrap"
+                                       Foreground="{ThemeResource Foreground100SalmonBrush}"
+                                       Style="{StaticResource CaptionTextBlockStyle}" />
+                            
+                            <TextBlock x:ConnectionId='5' Grid.Row="1"
+                                       Margin="0,10,0,0"
+                                                            
+                                       TextWrapping="Wrap" MaxLines="2" TextTrimming="CharacterEllipsis" 
+                                       Foreground="{ThemeResource Foreground100BlackBrush}"
+                                       Style="{StaticResource SubtitleTextBlockStyle}" />
+                            
+                            <TextBlock x:ConnectionId='6' Grid.Row="2"
+                                       Margin="0,4,0,12"
+                                                              
+                                       TextWrapping="Wrap" MaxLines="2" TextTrimming="CharacterEllipsis"
+                                       Foreground="{ThemeResource Foreground100BlackBrush}"
+                                       Style="{StaticResource BodyTextBlockStyle}" />
+                        </Grid>
+                        <Rectangle x:Name="BorderBottom"
+                                   Grid.Row="2"
+                                   Height="1"
+                                   HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                                   Fill="{ThemeResource Border20SalmonBrush}" />
+                    </StackPanel>
+                </Grid>
+                <ToggleButton x:ConnectionId='3' Content="&#xE1CE;"
+                                                          
+                                                                         
+                              IsThreeState="False"
+                              HorizontalAlignment="Right"
+                              Style="{StaticResource ToggleFavorite}" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource Background100CloudBrush}" Padding="0,0,0,12">
+
+        <!--Error state content-->
+        <Grid x:ConnectionId='7' x:Name="FeedErrorMessage" x:DeferLoadStrategy="Lazy"
+                                                                                                                                       >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="96" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid Background="{ThemeResource Background100PastelOrangeBrush}" HorizontalAlignment="Stretch">
+                <Image Width="140" Height="96"
+                       Source="ms-appx:///Assets/icon_feederror1.png"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </Grid>
+            <TextBlock Grid.Row="1"
+                       Margin="24,12"
+                       Text="Feed page shutdown!."
+                       TextWrapping="Wrap"
+                       Foreground="{ThemeResource Foreground100CrimsonBrush}"
+                       Style="{ThemeResource SubtitleTextBlockStyle}"/>
+
+            <Rectangle Grid.Row="2"
+                       Margin="24,0.333,24,0" Height="1"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                       Fill="{ThemeResource Border100PaleRoseBrush}" />
+
+            <TextBlock Grid.Row="3" 
+                       Margin="24,24,24,12"
+                       Text="Bạn nên refresh lại hoặc remove feed này"
+                       TextWrapping="Wrap" 
+                       Foreground="{ThemeResource Foreground100DimGrayBrush}"
+                       Style="{ThemeResource BodyTextBlockStyle}" />
+        
+            <Grid Grid.Row="4" Margin="24,24">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:ConnectionId='15' x:Name="RefreshFeed" 
+                        Grid.Column="0"
+                        Content="Refresh"
+                                                 
+                        Style="{StaticResource ButtonStyle2}" Width="120" HorizontalAlignment="Left" />
+                    
+                    <Button x:ConnectionId='16' x:Name="RemoveFeed" 
+                        Grid.Column="1"
+                        Content="Remove"
+                                                
+                        Style="{StaticResource ButtonStyle2}" HorizontalAlignment="Right" Width="120" Margin="20,0,0,0"/>
+
+                </Grid>
+        </Grid>
+
+        <!--Feed-is-empty content-->
+        <Grid x:ConnectionId='8'                                                                                                                          >
+
+            <!--Favorites-is-empty content-->
+            <Grid x:ConnectionId='12'  x:Name="FavoritesIsEmptyMessage" x:DeferLoadStrategy="Lazy"
+                                                                                                                                                 >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="96" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+
+                </Grid.RowDefinitions>
+                <Grid Background="{ThemeResource Background100OceanGrayBrush}" HorizontalAlignment="Stretch">
+                    <Image Width="140" Height="96"
+                       Source="ms-appx:///Assets/icon_nofavs.png"
+                       VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </Grid>
+                <TextBlock Grid.Row="1"
+                       Margin="24,12"
+                       Text="Không có favorite!" 
+                       TextWrapping="Wrap"
+                       Foreground="{ThemeResource Foreground100CrimsonBrush}"
+                       Style="{ThemeResource SubtitleTextBlockStyle}"/>
+
+                <Rectangle Grid.Row="2"
+                       Margin="24,0.333,24,0" Height="1"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                       Fill="{ThemeResource Border100PaleRoseBrush}" />
+
+                <TextBlock Grid.Row="3" 
+                       Margin="24,24,24,12"
+                       Text="Bạn có thể favorite tin tức bằng click vào star và remove favorite bằng click star lần nữa"
+                       TextWrapping="Wrap"
+                       Foreground="{ThemeResource Foreground100DimGrayBrush}"
+                       Style="{ThemeResource BodyTextBlockStyle}" />
+
+            </Grid>
+
+            <!--Non-favorites-is-empty (not yet loaded) content-->
+            <Grid x:ConnectionId='13'                                                                                                                                          >
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <controls:PageHeader>
+                    <controls:PageHeader.HeaderContent>
+                        <TextBlock x:ConnectionId='14'                                                        
+                               HorizontalAlignment="Left" 
+                               TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"
+                               Foreground="{ThemeResource Foreground100CrimsonBrush}"
+                               Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                    </controls:PageHeader.HeaderContent>
+                </controls:PageHeader>
+
+                <Rectangle 
+                    Margin="24,0.333,24,0" Height="1" 
+                    HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                    Fill="{ThemeResource Border100PaleRoseBrush}" />
+
+                <ProgressBar Grid.Row="1"
+                    Margin="24,8"
+                    IsIndeterminate="True"
+                    Style="{ThemeResource ProgressBarStyle1}" />
+            </Grid>
+        </Grid>
+
+        <!--Normal feed view content-->
+        <Grid x:ConnectionId='9'                                                                                                                                      >
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <controls:PageHeader>
+                <controls:PageHeader.HeaderContent>
+                    <TextBlock x:ConnectionId='11'                                                        
+                               HorizontalAlignment="Left" 
+                               TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"
+                               Foreground="{ThemeResource Foreground100CrimsonBrush}"
+                               Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                </controls:PageHeader.HeaderContent>
+            </controls:PageHeader>
+
+            <Rectangle Margin="24,0.333,24,0" Height="1" 
+                       HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                       Fill="{ThemeResource Border100PaleRoseBrush}" />
+
+            <controls:NavMenuListView x:ConnectionId='10' x:Name="ArticlesListView"
+                      Grid.Row="1"
+                      Padding="12,0"
+                                                                                                
+                                                                                           
+                                                                                                  
+                      AllowDrop="True"
+                      IsSwipeEnabled="True"
+                      IsItemClickEnabled="True"
+                                                            
+                      ItemContainerStyle="{StaticResource FeedView}"
+                      ItemTemplate="{StaticResource ArticlesListViewArticleTemplate}" 
+                                                                                                                                                                           />
+        </Grid>
+
+    </Grid>
+</Page>
+

@@ -1,0 +1,45 @@
+﻿<ArrayOfArrayOfstring xmlns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+  
+    <ArrayOfstring>
+        <string>VNEXPRESS - Tin mới nhất</string>
+        <string>http://vnexpress.net/rss/tin-moi-nhat.rss</string>
+    </ArrayOfstring>
+  
+    <ArrayOfstring>
+        <string>UIT - Thông báo</string>
+        <string>http://www.uit.edu.vn/taxonomy/term/83/feed</string>
+    </ArrayOfstring>
+
+    <ArrayOfstring>
+        <string>UIT - Hoạt động</string>
+        <string>http://www.uit.edu.vn/taxonomy/term/87/feed</string>
+    </ArrayOfstring>
+
+    <ArrayOfstring>
+        <string>UIT - Tin tức</string>
+        <string>http://www.uit.edu.vn/taxonomy/term/97/feed</string>
+    </ArrayOfstring>
+
+  <ArrayOfstring>
+    <string>UIT - Khoa CNPM</string>
+    <string>http://se.uit.edu.vn/vi/tin-tuc-3.feed</string>
+  </ArrayOfstring>
+
+  <ArrayOfstring>
+        <string>Tin mới nhất - Tuổi Trẻ Online</string>
+        <string>http://tuoitre.vn/rss/tt-tin-moi-nhat.rss</string>
+    </ArrayOfstring>
+
+    <ArrayOfstring>
+        <string>DÂN TRÍ - Du lịch</string>
+        <string>http://dantri.com.vn/du-lich.rss</string>
+    </ArrayOfstring>
+
+    <ArrayOfstring>
+        <string>VNEXPRESS - Thế giới</string>
+        <string>http://vnexpress.net/rss/the-gioi.rss</string>
+    </ArrayOfstring>
+ 
+  
+
+</ArrayOfArrayOfstring>

@@ -1,0 +1,10 @@
+App.xbf
+AppShell.xbf
+Controls\PageHeader.xbf
+Properties\DesignTimeResources.xbf
+Styles\Styles.xbf
+Views\AddFeedView.xbf
+Views\DetailPage.xbf
+Views\EditFeedsView.xbf
+Views\FeedView.xbf
+Views\MasterDetailPage.xbf
